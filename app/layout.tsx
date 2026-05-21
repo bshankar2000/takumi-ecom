@@ -1,22 +1,8 @@
 import type { Metadata } from "next";
-import { Libre_Caslon_Text, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import StoreProvider from "./lib/StoreProvider";
-
-const libreCaslon = Libre_Caslon_Text({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-libre-caslon",
-  display: "swap",
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Takumi",
@@ -30,10 +16,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${libreCaslon.variable} ${manrope.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Manrope:wght@200..800&display=swap"
+          rel="stylesheet"
+        />
+        <style>{`
+          :root {
+            --font-libre-caslon: 'Libre Caslon Text', serif;
+            --font-manrope: 'Manrope', sans-serif;
+          }
+        `}</style>
+      </head>
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <StoreProvider>
           <Navbar />
